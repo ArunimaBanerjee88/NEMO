@@ -1,0 +1,23 @@
+# Backend framework
+fastapi==0.110.0
+uvicorn==0.29.0
+
+# Data validation
+pydantic==2.6.4
+
+# NLP & Transformers
+transformers==4.38.2
+torch>=2.0.0
+
+# Database
+sqlite-utils==3.36
+
+# HTTP requests
+requests==2.31.0
+
+# Utilities
+python-multipart==0.0.9
+
+
+scikit-learn
+itsdangerous

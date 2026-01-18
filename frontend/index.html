@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NEMO | Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="center">
+
+<div class="login-card">
+  <h2>Welcome to NEMO 🧠</h2>
+  <p>Dyslexia-friendly learning assistant</p>
+
+  <button class="google-btn" onclick="googleLogin()">
+    🔐 Login with Google
+  </button>
+</div>
+
+<script>
+function googleLogin() {
+  window.location.href = "http://127.0.0.1:8000/auth/google";
+}
+</script>
+
+</body>
+</html>

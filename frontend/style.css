@@ -1,0 +1,85 @@
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('fonts/OpenDyslexic.otf');
+}
+
+body {
+  font-family: 'OpenDyslexic', Arial, sans-serif;
+  background-color: #faf7f5ff;
+  color: #222;
+  line-height: 1.8;
+  letter-spacing: 0.06em;
+}
+
+.chat-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.chat-box {
+  background: #c2a0e6;
+  border-radius: 12px;
+  padding: 15px;
+  height: 400px;
+  overflow-y: auto;
+}
+
+.user {
+  background: #d1e7e4;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 5px 0;
+}
+
+.bot {
+  background: #E2E3E5;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 5px 0;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('fonts/OpenDyslexic-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'OpenDyslexic', Arial, sans-serif;
+}
+
+.google-btn {
+  padding: 12px 20px;
+  font-size: 18px;
+  background: #4285F4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.google-btn:hover {
+  background: #3367D6;
+}
+
+.chat-wrapper {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.msg.user {
+  background: #d1dce7;
+}
+
+.msg.assistant {
+  background: #faf8fa;
+}
