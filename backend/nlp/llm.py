@@ -1,39 +1,52 @@
-from transformers import pipeline
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
 
-# Load model ONCE (important for performance)
-generator = pipeline(
-    "text-generation",
-    model="distilgpt2",
-    max_new_tokens=180,
-    do_sample=False,        # VERY IMPORTANT → no randomness
-    temperature=0.7,
+MODEL_NAME = "microsoft/phi-2"
+
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+model = AutoModelForCausalLM.from_pretrained(
+    MODEL_NAME,
+    torch_dtype=torch.float32,   # CPU SAFE
+    device_map="auto"
 )
 
-SYSTEM_PROMPT = (
-    "You are NEMO, a kind and calm learning assistant for dyslexic children aged 4 to 12.\n"
-    "Rules:\n"
-    "- Use simple words\n"
-    "- Short sentences\n"
-    "- No adult topics\n"
-    "- No jokes\n"
-    "- Be educational and correct\n"
-    "- If unsure, say you are unsure\n\n"
-)
+SYSTEM_PROMPT = """
+You are NEMO, a calm, kind, intelligent learning assistant for dyslexic children (ages 4–12).
 
-def generate_answer(user_question: str) -> str:
-    prompt = (
-        SYSTEM_PROMPT
-        + f"Question: {user_question}\n"
-        + "Answer:"
+Rules:
+- Simple words
+- Short sentences
+- Educational only
+- Child safe
+- Explain clearly
+- Understand messy child language
+- If unsure, say you are unsure
+"""
+
+def llm_answer(user_message: str, level="easy"):
+    prompt = f"""
+{SYSTEM_PROMPT}
+
+Child level: {level}
+
+Child says:
+{user_message}
+
+NEMO answers:
+"""
+
+    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+
+    output = model.generate(
+        **inputs,
+        max_new_tokens=120,
+        temperature=0.4,
+        do_sample=True,
+        top_p=0.9,
+        repetition_penalty=1.2
     )
 
-    output = generator(prompt)[0]["generated_text"]
-
-    # Clean output
-    answer = output.split("Answer:")[-1].strip()
-
-    # Stop runaway text
-    answer = answer.split("\n")[0:5]
-    answer = "\n".join(answer)
+    text = tokenizer.decode(output[0], skip_special_tokens=True)
+    answer = text.split("NEMO answers:")[-1].strip()
 
     return answer
