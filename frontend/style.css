@@ -68,6 +68,7 @@ body {
 
 .google-btn:hover {
   background: #3367D6;
+  background-color: #3367D6;
 }
 
 .chat-wrapper {
@@ -82,4 +83,24 @@ body {
 
 .msg.assistant {
   background: #faf8fa;
+}
+
+.login-card {
+  height: 400px;
+  width: 400px;
+  margin:auto;
+  padding: 20px;
+  border: 1px solid black;
+  font-family: 'OpenDyslexic', 'Times New Roman', Times, serif;
+  border-radius: 25%;
+  background-color:bisque;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 150%;
+}
+.login-card h2 {
+  margin-bottom: 20px;
+  
 }
